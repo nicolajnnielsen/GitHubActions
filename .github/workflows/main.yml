@@ -11,7 +11,7 @@ jobs:
     - name: 📂 Sync Files
       uses: SamKirkland/web-deploy@v1
       with:
-        target-server: nt51.unoeuro.com
-        remote-user: ninn.nu
+        target-server: linux287.unoeuro.com
+        remote-user: nnn.ninja
         private-ssh-key: ${{ secrets.SSH_KEY }}
         destination-path: ~/test/
