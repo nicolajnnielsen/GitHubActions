@@ -14,5 +14,4 @@ jobs:
         server: linux287.unoeuro.com
         username: nnn.ninja
         password: ${{ secrets.ftp_password }}
-        dry-run: true
         server-dir: test/
