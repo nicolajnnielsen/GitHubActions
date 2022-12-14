@@ -15,3 +15,5 @@ jobs:
         username: nnn.ninja
         password: ${{ secrets.ftp_password }}
         server-dir: test/
+        protocol: ftps
+        port: 22
