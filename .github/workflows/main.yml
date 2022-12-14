@@ -1,5 +1,5 @@
 on: push
-name: Publish Website
+name: Publish Website Dry Run
 jobs:
   web-deploy:
     name: 🚀 Deploy Website Every Commit
@@ -15,3 +15,4 @@ jobs:
         remote-user: nnn.ninja
         private-ssh-key: ${{ secrets.SSH_KEY }}
         destination-path: ~/test/
+        rsync-options: --dry-run --archive --verbose --compress --delete-after --human-readable --exclude=.git* --exclude=.git/ --exclude=README.md --exclude=readme.md --exclude=.gitignore
