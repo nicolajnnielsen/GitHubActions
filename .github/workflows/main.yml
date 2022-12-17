@@ -13,10 +13,9 @@ jobs:
       with:
         key: ${{ secrets.SSH_KEY }}
         known_hosts: placeholder
-        name: deploy_key
         
     - name: Adding Known Hosts
       run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
       
     - name: Deploy with Rsync
-      run: sshpass -p ${{ secrets.FTP_PASSWORD }} rsync -e ssh --dry-run --archive --verbose --compress --delete-after --human-readable ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/test/
+      run: rsync -e ssh --dry-run --archive --verbose --compress --delete-after --human-readable ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/test/
