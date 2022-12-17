@@ -13,7 +13,6 @@ jobs:
       with:
         key: ${{ secrets.SSH_KEY }}
         known_hosts: unnecessary
-        name: id_rsa
         
     - name: Adding Known Hosts
       run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
