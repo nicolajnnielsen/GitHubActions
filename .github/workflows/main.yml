@@ -8,14 +8,14 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
       
-    - name: List files after checkout
-      run: ls -a
-      
-    - name: Run Command
-      uses: garygrossgarten/github-action-ssh@release
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
       with:
-        command: rsync -i /home/runner/.ssh/web_deploy_key -o StrictHostKeyChecking=no --dry-run --archive --verbose --compress --delete-after --human-readable ./ nnn.ninja@linux287.unoeuro.com:~/test/
-        host: linux287.unoeuro.com
-        username: nnn.ninja
-        password: ${{ secrets.FTP_PASSWORD }}
-        privateKey: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: placeholder
+        
+    - name: Adding Known Hosts
+      run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
+      
+    - name: Deploy with Rsync
+      run: sshpass -p ${{ secrets.FTP_PASSWORD }} rsync -e ssh -p ${{ secrets.SSH_PORT}} --dry-run --archive --verbose --compress --delete-after --human-readable ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/test/
