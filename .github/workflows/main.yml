@@ -14,7 +14,7 @@ jobs:
     - name: Run Command
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: rsync /home/runner/.ssh/web_deploy_key -o StrictHostKeyChecking=no --dry-run --archive --verbose --compress --delete-after --human-readable ./ nnn.ninja@linux287.unoeuro.com:~/test/
+        command: rsync -i /home/runner/.ssh/web_deploy_key -o StrictHostKeyChecking=no --dry-run --archive --verbose --compress --delete-after --human-readable ./ nnn.ninja@linux287.unoeuro.com:~/test/
         host: linux287.unoeuro.com
         username: nnn.ninja
         password: ${{ secrets.FTP_PASSWORD }}
