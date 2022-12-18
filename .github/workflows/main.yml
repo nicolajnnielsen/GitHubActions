@@ -19,4 +19,4 @@ jobs:
       run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
       
     - name: Deploy with Rsync
-      run: sshpass -p ${{ secrets.FTP_PASSWORD }} rsync -e ssh -i ~/.ssh/github-action -p 22 --dry-run --archive --verbose --compress --delete-after --human-readable ./ ${{ secrets.USERNAME }}@linux287.unoeuro.com:~/test/
+      run: sshpass -p ${{ secrets.FTP_PASSWORD }} rsync -e ssh -i ~/.ssh/github-action -o StrictHostKeyChecking=no -p 22 --dry-run --archive --verbose --compress --delete-after --human-readable ./ ${{ secrets.USERNAME }}@linux287.unoeuro.com:~/test/
